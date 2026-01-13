@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Github } from "lucide-react";
+import logoIcon from "@/assets/logo-icon.png";
 
 const footerLinks = {
   company: [
@@ -22,29 +23,34 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container-wide py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="cta-section">
+      <div className="container-wide py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block">
-              <span className="text-2xl font-bold">InnoCrate</span>
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <img 
+                src={logoIcon} 
+                alt="InnoCrate" 
+                className="h-8 w-8" 
+              />
+              <span className="text-xl font-bold text-white">InnoCrate</span>
             </Link>
-            <p className="mt-4 text-primary-foreground/80 max-w-md">
+            <p className="mt-4 text-white/70 max-w-md text-sm leading-relaxed">
               Product Engineering & AI Solutions for modern businesses. We partner 
               with startups and growing teams to build reliable digital products.
             </p>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex gap-3 mt-5">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
+                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
                   aria-label={social.name}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={18} className="text-white" />
                 </a>
               ))}
             </div>
@@ -52,13 +58,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-4 text-white">Company</h4>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -69,13 +75,13 @@ const Footer = () => {
 
           {/* Services Links */}
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-4 text-white">Services</h4>
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -86,18 +92,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-primary-foreground/60">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-white/50">
             © {new Date().getFullYear()} InnoCrate. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-sm">
-            <Link
-              to="/start-project"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
-              Start a Project
-            </Link>
-          </div>
+          <Link
+            to="/start-project"
+            className="text-white/70 hover:text-white transition-colors text-sm"
+          >
+            Start a Project
+          </Link>
         </div>
       </div>
     </footer>

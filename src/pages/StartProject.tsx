@@ -7,7 +7,7 @@ const nextSteps = [
   {
     icon: MessageSquare,
     title: "We understand your goals",
-    description: "Share your vision, challenges, and what success looks like for you.",
+    description: "Share your vision, challenges, and what success looks like.",
   },
   {
     icon: Lightbulb,
@@ -17,7 +17,7 @@ const nextSteps = [
   {
     icon: ArrowRight,
     title: "We outline next steps clearly",
-    description: "You'll leave with a clear understanding of how we can help.",
+    description: "You'll leave with clarity on how we can help.",
   },
 ];
 
@@ -37,100 +37,79 @@ const StartProject = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="section-padding bg-gradient-to-b from-muted/50 to-background">
+      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
         <div className="container-wide">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Start a Project
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
-                Have an idea or an existing product? Let's talk.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <FadeIn>
+              <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                  Start a Project
+                </h1>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Have an idea or an existing product? Let's talk.
+                </p>
 
-      {/* What Happens Next */}
-      <section className="py-12 md:py-16">
-        <div className="container-wide">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                What Happens Next
-              </h2>
-              <p className="text-muted-foreground">
-                A discovery call is a simple, no-pressure conversation to explore fit.
-              </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-            {nextSteps.map((step, index) => (
-              <StaggerItem key={step.title}>
-                <div className="text-center p-6">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {step.description}
-                  </p>
+                {/* What Happens Next */}
+                <div className="space-y-4">
+                  <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                    What Happens Next
+                  </h2>
+                  {nextSteps.map((step, index) => (
+                    <div key={step.title} className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <step.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold mb-1">{step.title}</h3>
+                        <p className="text-muted-foreground text-sm">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
 
-      {/* Calendly Embed */}
-      <section className="pb-20 md:pb-28">
-        <div className="container-wide">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto">
+                <div className="mt-6 flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-brand-green-dark" />
+                  <span className="text-sm">No pressure. Just a conversation to explore fit.</span>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Calendly Embed */}
+            <FadeIn direction="right">
               <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <div className="p-6 border-b border-border flex items-center gap-3">
+                <div className="p-4 border-b border-border flex items-center gap-3 bg-muted/30">
                   <Calendar className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">Book a Discovery Call</h3>
+                  <h3 className="font-semibold text-sm">Book a Discovery Call</h3>
                 </div>
                 
                 {/* Calendly Inline Widget */}
                 <div
                   className="calendly-inline-widget"
                   data-url="https://calendly.com"
-                  style={{ minWidth: "320px", height: "700px" }}
+                  style={{ minWidth: "300px", height: "600px" }}
                 />
                 
                 {/* Fallback message */}
                 <noscript>
-                  <div className="p-8 text-center">
-                    <p className="text-muted-foreground mb-4">
+                  <div className="p-6 text-center">
+                    <p className="text-muted-foreground mb-4 text-sm">
                       JavaScript is required to load the booking calendar.
                     </p>
                     <a
                       href="https://calendly.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:underline"
+                      className="text-primary hover:underline text-sm"
                     >
                       Book directly on Calendly →
                     </a>
                   </div>
                 </noscript>
               </div>
-
-              {/* Reassurance Note */}
-              <div className="mt-8 text-center">
-                <div className="inline-flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-brand-green-dark" />
-                  <span className="text-sm">
-                    No pressure. Just a conversation to explore fit.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </section>
     </Layout>
