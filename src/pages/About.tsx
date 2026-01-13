@@ -3,7 +3,7 @@ import { ArrowRight, Target, Eye, Heart, MessageCircle, Award } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
-import logoIcon from "@/assets/logo-icon.png";
+
 
 const values = [
   {
@@ -29,32 +29,20 @@ const About = () => {
       {/* Hero */}
       <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <FadeIn>
-              <div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">About InnoCrate</h1>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Founded to help businesses build better products 
-                  through strong engineering and clear thinking.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  We believe technology should be reliable, scalable, and purposeful. 
-                  As a founder-led agency, we bring hands-on expertise, clear communication, 
-                  and a deep understanding of product development to every project.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="right">
-              <div className="flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
-                  <div className="relative bg-card border border-border rounded-3xl p-10 flex items-center justify-center">
-                    <img src={logoIcon} alt="InnoCrate" className="w-32 h-32" />
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">About InnoCrate</h1>
+              <p className="text-lg text-muted-foreground mb-4">
+                Founded to help businesses build better products 
+                through strong engineering and clear thinking.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                We believe technology should be reliable, scalable, and purposeful. 
+                As a founder-led agency, we bring hands-on expertise, clear communication, 
+                and a deep understanding of product development to every project.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
