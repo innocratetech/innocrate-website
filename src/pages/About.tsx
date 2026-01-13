@@ -1,44 +1,57 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, Sparkles } from "lucide-react";
+import { ArrowRight, Target, Eye, Heart, MessageCircle, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout";
-import { FadeIn } from "@/components/animations";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import logoIcon from "@/assets/logo-icon.png";
+
+const values = [
+  {
+    icon: Award,
+    title: "Quality First",
+    description: "We never compromise on code quality or product integrity.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Transparency",
+    description: "Clear communication and honest feedback at every step.",
+  },
+  {
+    icon: Heart,
+    title: "Partnership",
+    description: "We succeed when our clients succeed. It's that simple.",
+  },
+];
 
 const About = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="section-padding bg-gradient-to-b from-muted/50 to-background">
+      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
         <div className="container-wide">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">About InnoCrate</h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
-                InnoCrate was founded to help businesses build better products 
-                through strong engineering and clear thinking.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Story */}
-      <section className="py-12 md:py-20">
-        <div className="container-wide">
-          <div className="max-w-3xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
             <FadeIn>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">About InnoCrate</h1>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Founded to help businesses build better products 
+                  through strong engineering and clear thinking.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
                   We believe technology should be reliable, scalable, and purposeful. 
                   As a founder-led agency, we bring hands-on expertise, clear communication, 
                   and a deep understanding of product development to every project.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Our team has worked across various industries — from early-stage startups 
-                  to established enterprises — always with a focus on building solutions 
-                  that create real, lasting value. We don't just write code; we solve 
-                  problems and help businesses grow.
-                </p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="right">
+              <div className="flex items-center justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
+                  <div className="relative bg-card border border-border rounded-3xl p-10 flex items-center justify-center">
+                    <img src={logoIcon} alt="InnoCrate" className="w-32 h-32" />
+                  </div>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -46,16 +59,16 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="section-padding bg-muted/30">
+      <section className="section-padding">
         <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
             <FadeIn direction="left">
-              <div className="bg-card border border-border rounded-xl p-8 h-full">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                  <Eye className="w-6 h-6 text-primary" />
+              <div className="bg-card border border-border rounded-xl p-6 h-full hover:shadow-md transition-shadow">
+                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Eye className="w-5 h-5 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-                <p className="text-muted-foreground text-lg">
+                <h2 className="text-xl font-bold mb-2">Our Vision</h2>
+                <p className="text-muted-foreground">
                   To be a trusted engineering partner for teams building 
                   meaningful digital products.
                 </p>
@@ -63,12 +76,12 @@ const About = () => {
             </FadeIn>
 
             <FadeIn direction="right">
-              <div className="bg-card border border-border rounded-xl p-8 h-full">
-                <div className="w-12 h-12 rounded-lg bg-brand-green-dark/10 flex items-center justify-center mb-6">
-                  <Target className="w-6 h-6 text-brand-green-dark" />
+              <div className="bg-card border border-border rounded-xl p-6 h-full hover:shadow-md transition-shadow">
+                <div className="w-11 h-11 rounded-lg bg-brand-green-dark/10 flex items-center justify-center mb-4">
+                  <Target className="w-5 h-5 text-brand-green-dark" />
                 </div>
-                <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-                <p className="text-muted-foreground text-lg">
+                <h2 className="text-xl font-bold mb-2">Our Mission</h2>
+                <p className="text-muted-foreground">
                   To deliver high-quality engineering and AI solutions 
                   that create long-term value.
                 </p>
@@ -79,66 +92,49 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="section-padding">
+      <section className="section-padding-sm bg-muted/50">
         <div className="container-wide">
           <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">
                 What Drives Us
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-muted-foreground">
                 Our core values shape how we work and the relationships we build.
               </p>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  title: "Quality First",
-                  description:
-                    "We never compromise on code quality or product integrity.",
-                },
-                {
-                  title: "Transparency",
-                  description:
-                    "Clear communication and honest feedback at every step.",
-                },
-                {
-                  title: "Partnership",
-                  description:
-                    "We succeed when our clients succeed. It's that simple.",
-                },
-              ].map((value) => (
-                <div
-                  key={value.title}
-                  className="text-center p-6 rounded-xl border border-border bg-card"
-                >
-                  <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {values.map((value) => (
+              <StaggerItem key={value.title}>
+                <div className="text-center p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow h-full">
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <value.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+                  <p className="text-muted-foreground text-sm">{value.description}</p>
                 </div>
-              ))}
-            </div>
-          </FadeIn>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section className="section-padding cta-section">
         <div className="container-wide">
           <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
                 Let's work together
               </h2>
-              <p className="text-lg text-primary-foreground/80 mb-8">
+              <p className="text-white/70 mb-6">
                 Ready to build something great? We'd love to hear about your project.
               </p>
               <Button
                 size="lg"
-                variant="secondary"
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+                className="bg-white text-primary hover:bg-white/90"
                 asChild
               >
                 <Link to="/start-project">

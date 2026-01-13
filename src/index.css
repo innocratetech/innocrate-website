@@ -10,38 +10,43 @@
     --primary: 212 83% 26%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 197 58% 30%;
+    --secondary: 190 50% 32%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 134 40% 60%;
-    --accent-foreground: 212 83% 26%;
+    --accent: 145 58% 55%;
+    --accent-foreground: 212 83% 20%;
 
     /* Semantic Colors */
-    --background: 0 0% 100%;
-    --foreground: 212 83% 12%;
+    --background: 210 20% 99%;
+    --foreground: 212 60% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 212 83% 12%;
+    --card-foreground: 212 60% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 212 83% 12%;
+    --popover-foreground: 212 60% 15%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 212 20% 40%;
+    --muted: 210 25% 96%;
+    --muted-foreground: 212 25% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
+    --border: 210 25% 88%;
+    --input: 210 25% 88%;
     --ring: 212 83% 26%;
 
-    --radius: 0.625rem;
+    --radius: 0.5rem;
 
     /* Extended Brand Palette */
     --brand-teal: 186 51% 35%;
-    --brand-green: 134 40% 60%;
-    --brand-green-dark: 163 43% 44%;
+    --brand-green: 145 58% 55%;
+    --brand-green-dark: 163 50% 42%;
+
+    /* CTA section dark variant */
+    --cta-bg: 212 60% 12%;
+    --cta-foreground: 0 0% 100%;
+    --cta-muted: 210 20% 80%;
 
     /* Sidebar (keeping for compatibility) */
     --sidebar-background: 0 0% 98%;
@@ -80,7 +85,11 @@
   }
 
   .section-padding {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-padding-sm {
+    @apply py-8 md:py-12 lg:py-16;
   }
 
   .container-narrow {
@@ -89,5 +98,19 @@
 
   .container-wide {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* CTA Section styling */
+  .cta-section {
+    background: hsl(var(--cta-bg));
+    color: hsl(var(--cta-foreground));
+  }
+
+  .cta-section h2 {
+    color: hsl(var(--cta-foreground));
+  }
+
+  .cta-section p {
+    color: hsl(var(--cta-muted));
   }
 }
