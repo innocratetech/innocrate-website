@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, Heart, MessageCircle, Award } from "lucide-react";
+import { ArrowRight, Target, Eye, Heart, MessageCircle, Award, Users, Rocket, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 
+const stats = [
+  { value: "50+", label: "Projects Delivered", icon: Rocket },
+  { value: "15+", label: "Happy Clients", icon: Users },
+  { value: "3+", label: "Years Experience", icon: Code },
+];
 
 const values = [
   {
@@ -27,22 +32,58 @@ const About = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
-        <div className="container-wide">
-          <FadeIn>
-            <div className="max-w-3xl">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">About InnoCrate</h1>
-              <p className="text-lg text-muted-foreground mb-4">
-                Founded to help businesses build better products 
-                through strong engineering and clear thinking.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                We believe technology should be reliable, scalable, and purposeful. 
-                As a founder-led agency, we bring hands-on expertise, clear communication, 
-                and a deep understanding of product development to every project.
-              </p>
-            </div>
-          </FadeIn>
+      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-primary/5 via-background to-accent/5 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-56 h-56 bg-accent/5 rounded-full blur-3xl" />
+        
+        <div className="container-wide relative">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <FadeIn>
+              <div>
+                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
+                  Founder-Led Agency
+                </span>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                  Building Products That <span className="text-primary">Matter</span>
+                </h1>
+                <p className="text-lg text-muted-foreground mb-4">
+                  Founded to help businesses build better products 
+                  through strong engineering and clear thinking.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  We believe technology should be reliable, scalable, and purposeful. 
+                  As a founder-led agency, we bring hands-on expertise, clear communication, 
+                  and a deep understanding of product development to every project.
+                </p>
+                <Button asChild>
+                  <Link to="/start-project">
+                    Work With Us
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
+            
+            <FadeIn direction="right">
+              <div className="grid grid-cols-1 gap-4">
+                {stats.map((stat, index) => (
+                  <div 
+                    key={stat.label}
+                    className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:shadow-md transition-all hover:border-primary/20"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <stat.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
