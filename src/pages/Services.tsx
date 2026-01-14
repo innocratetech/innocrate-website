@@ -16,39 +16,55 @@ const services = [
   {
     id: "fullstack",
     icon: Code2,
-    title: "Scalable Full Stack Engineering",
+    title: "Scalable Full-Stack Engineering",
     description:
-      "We build end-to-end web applications using modern technologies, clean architecture, and best engineering practices.",
+      "End-to-end engineering for modern web products, built with scalability, performance, and long-term maintainability in mind.",
     problems: [
-      "Slow development cycles",
-      "Unstable or unscalable systems",
-      "Poor technical foundations",
+      "Slow or unpredictable development velocity",
+      "Applications that struggle to scale reliably",
+      "Fragile systems built without solid architecture",
     ],
     outcomes: [
-      "Reliable, scalable products",
-      "Faster time to market",
-      "Maintainable codebases",
+      "Stable, scalable production-ready applications",
+      "Faster iteration without sacrificing quality",
+      "Clean, maintainable codebases built to last",
     ],
     color: "bg-primary/10 text-primary",
   },
   {
     id: "ai",
     icon: Brain,
-    title: "Practical AI That Delivers Results",
+    title: "Practical AI & Intelligent Systems",
     description:
-      "We design and integrate AI, machine learning, and data-driven solutions that enhance decision-making and automation.",
-    problems: ["Manual processes", "Untapped data", "Inefficient workflows"],
-    outcomes: ["Smarter systems", "Improved efficiency", "Actionable insights"],
+      "AI and data-driven solutions focused on solving real business problems — not experiments or hype.",
+    problems: [
+      "Manual, repetitive operational workflows",
+      "Data that exists but isn’t being effectively used",
+      "Decision-making based on intuition instead of insight",
+    ],
+    outcomes: [
+      "Automated and intelligent workflows",
+      "Actionable insights from existing data",
+      "Smarter systems that adapt and improve over time",
+    ],
     color: "bg-secondary/10 text-secondary",
   },
   {
     id: "design",
     icon: Palette,
-    title: "Design That Drives Adoption",
+    title: "Product Design & UX",
     description:
-      "We create intuitive, user-focused designs that align business goals with user needs.",
-    problems: ["Poor user experience", "Low engagement", "Unclear product flows"],
-    outcomes: ["Better usability", "Higher engagement", "Clear product direction"],
+      "User-centered design that aligns business goals with intuitive, usable product experiences.",
+    problems: [
+      "Confusing interfaces that frustrate users",
+      "Low engagement or poor product adoption",
+      "Unclear user journeys and product flows",
+    ],
+    outcomes: [
+      "Clear, intuitive user experiences",
+      "Improved engagement and retention",
+      "Design systems that support product growth",
+    ],
     color: "bg-accent/20 text-accent-foreground",
   },
 ];
@@ -57,13 +73,17 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
+      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30 final-cta">
         <div className="container-wide">
           <FadeIn>
             <div className="max-w-2xl">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Our Services</h1>
-              <p className="text-lg text-muted-foreground">
-                Designed to support you from idea to launch — and beyond.
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Our Services
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We help founders and growing teams design, build, and scale
+                digital products with clarity, quality, and long-term vision —
+                from first idea to production and beyond.
               </p>
             </div>
           </FadeIn>
@@ -71,15 +91,20 @@ const Services = () => {
       </section>
 
       {/* Services */}
-      <section className="section-padding">
+      <section className="section-padding final-cta">
         <div className="container-wide space-y-10">
           {services.map((service, index) => (
             <FadeIn key={service.id} delay={index * 0.1}>
-              <div id={service.id} className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+              <div
+                id={service.id}
+                className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+              >
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   {/* Left - Info */}
                   <div className="lg:col-span-2 p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-border">
-                    <div className={`w-12 h-12 rounded-xl ${service.color} flex items-center justify-center mb-4`}>
+                    <div
+                      className={`w-12 h-12 rounded-xl ${service.color} flex items-center justify-center mb-4`}
+                    >
                       <service.icon className="w-6 h-6" />
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold mb-3">
@@ -96,7 +121,9 @@ const Services = () => {
                     <div className="p-6 border-b md:border-b-0 md:border-r border-border bg-muted/30">
                       <div className="flex items-center gap-2 mb-4">
                         <AlertCircle className="w-4 h-4 text-secondary" />
-                        <h3 className="text-sm font-semibold uppercase tracking-wider text-secondary">What We Solve</h3>
+                        <h3 className="text-sm font-semibold uppercase tracking-wider text-secondary">
+                          What We Solve
+                        </h3>
                       </div>
                       <ul className="space-y-2.5">
                         {service.problems.map((problem) => (
@@ -115,11 +142,16 @@ const Services = () => {
                     <div className="p-6 bg-gradient-to-br from-primary/5 to-accent/5">
                       <div className="flex items-center gap-2 mb-4">
                         <TrendingUp className="w-4 h-4 text-brand-green-dark" />
-                        <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-green-dark">Outcome</h3>
+                        <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-green-dark">
+                          Outcome
+                        </h3>
                       </div>
                       <ul className="space-y-2.5">
                         {service.outcomes.map((outcome) => (
-                          <li key={outcome} className="flex items-center gap-2.5 text-sm">
+                          <li
+                            key={outcome}
+                            className="flex items-center gap-2.5 text-sm"
+                          >
                             <CheckCircle2 className="w-4 h-4 text-brand-green-dark flex-shrink-0" />
                             <span>{outcome}</span>
                           </li>
@@ -135,7 +167,7 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding-sm cta-section">
+      <section className="section-padding-sm cta-section final-cta">
         <div className="container-wide">
           <FadeIn>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -147,7 +179,11 @@ const Services = () => {
                   Let's discuss your project and explore how we can help.
                 </p>
               </div>
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90"
+                asChild
+              >
                 <Link to="/start-project">
                   Start a Project
                   <ArrowRight className="ml-2 h-4 w-4" />

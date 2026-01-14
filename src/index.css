@@ -100,7 +100,6 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* CTA Section styling */
   .cta-section {
     background: hsl(var(--cta-bg));
     color: hsl(var(--cta-foreground));
@@ -112,5 +111,10 @@
 
   .cta-section p {
     color: hsl(var(--cta-muted));
+  }
+
+  .final-cta {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
   }
 }

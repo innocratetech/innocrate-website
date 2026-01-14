@@ -1,9 +1,26 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Code2, Brain, Palette, CheckCircle2, Zap, Users, Shield, Layers } from "lucide-react";
+import {
+  ArrowRight,
+  Code2,
+  Brain,
+  Palette,
+  CheckCircle2,
+  Zap,
+  Users,
+  Shield,
+  Layers,
+  Rocket,
+  Building2,
+  Cpu,
+  Briefcase,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 
+/* =======================
+   SERVICES
+======================= */
 const services = [
   {
     icon: Code2,
@@ -14,7 +31,8 @@ const services = [
   {
     icon: Brain,
     title: "AI / ML Solutions",
-    description: "Apply data and machine learning to solve real business problems.",
+    description:
+      "Apply data and machine learning to solve real business problems.",
     color: "bg-secondary/10 text-secondary",
   },
   {
@@ -25,18 +43,47 @@ const services = [
   },
 ];
 
+/* =======================
+   WHY INNOCRATE
+======================= */
 const whyInnoCrate = [
   { icon: Zap, text: "Founder-led engineering mindset" },
   { icon: Users, text: "Clear communication & transparency" },
   { icon: Shield, text: "Strong focus on business outcomes" },
-  { icon: Layers, text: "Clean, scalable architecture" },
+  { icon: Layers, text: "Clean and scalable architecture" },
+];
+
+/* =======================
+   WHO WE WORK WITH
+======================= */
+const whoWeWorkWith = [
+  {
+    icon: Rocket,
+    title: "Startup Founders",
+    description:
+      "Founders turning ideas into production-ready products and looking for a reliable engineering partner.",
+  },
+  {
+    icon: Users,
+    title: "Early-Stage Teams",
+    description:
+      "Teams that need to move fast without compromising on architecture, quality, or scalability.",
+  },
+  {
+    icon: Building2,
+    title: "Growing Businesses",
+    description:
+      "Businesses modernizing systems, integrating AI, or building new digital capabilities.",
+  },
 ];
 
 const Index = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
+      {/* =======================
+          HERO SECTION
+      ======================= */}
+      <section className="section-padding pt-24 bg-gradient-to-br from-muted via-background to-muted/30">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -46,18 +93,22 @@ const Index = () => {
                   Product Engineering & AI Solutions
                 </div>
               </FadeIn>
+
               <FadeIn delay={0.1}>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-7">
                   Build Products That{" "}
                   <span className="text-gradient">Scale & Succeed</span>
                 </h1>
               </FadeIn>
+
               <FadeIn delay={0.15}>
-                <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-lg">
-                  InnoCrate partners with startups and growing teams to design, build, 
-                  and scale reliable digital products using modern engineering and AI.
+                <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-lg">
+                  InnoCrate partners with startups and growing teams to design,
+                  build, and scale reliable digital products using modern
+                  engineering and AI.
                 </p>
               </FadeIn>
+
               <FadeIn delay={0.2}>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button size="lg" asChild>
@@ -66,21 +117,24 @@ const Index = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button size="lg" variant="outline" asChild>
+                  <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90" asChild>
                     <Link to="/services">View Our Services</Link>
                   </Button>
                 </div>
               </FadeIn>
             </div>
+
             <FadeIn direction="right" delay={0.2}>
               <div className="hidden lg:grid grid-cols-2 gap-4">
-                {whyInnoCrate.map((item, i) => (
-                  <div 
-                    key={item.text} 
-                    className={`p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow ${i === 1 || i === 2 ? 'translate-y-4' : ''}`}
+                {whyInnoCrate.map((item) => (
+                  <div
+                    key={item.text}
+                    className="p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
                   >
                     <item.icon className="w-6 h-6 text-primary mb-3" />
-                    <p className="text-sm font-medium text-foreground">{item.text}</p>
+                    <p className="text-sm font-medium text-foreground">
+                      {item.text}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -89,19 +143,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services */}
+      {/* =======================
+          SERVICES
+      ======================= */}
       <section className="section-padding">
         <div className="container-wide">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">What We Do</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                  What We Do
+                </h2>
                 <p className="text-muted-foreground max-w-lg">
-                  From engineering robust applications to integrating AI-driven intelligence, 
-                  we build solutions that last.
+                  From engineering robust applications to integrating AI-driven
+                  intelligence, we build solutions that last.
                 </p>
               </div>
-              <Button variant="outline" asChild className="self-start md:self-auto">
+              <Button
+                variant="outline"
+                className="bg-white text-primary hover:bg-white/90"
+                asChild
+              >
                 <Link to="/services">
                   All Services
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -114,11 +176,17 @@ const Index = () => {
             {services.map((service) => (
               <StaggerItem key={service.title}>
                 <div className="group p-6 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 h-full">
-                  <div className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-5`}>
+                  <div
+                    className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-5`}
+                  >
                     <service.icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {service.description}
+                  </p>
                 </div>
               </StaggerItem>
             ))}
@@ -126,41 +194,58 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Who We Work With + Why */}
+      {/* =======================
+          WHO WE WORK WITH
+      ======================= */}
       <section className="section-padding bg-muted/50">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-            <FadeIn direction="left" className="lg:col-span-2">
+          <FadeIn direction="left">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">
                   Who We Work With
                 </h2>
-                <p className="text-muted-foreground mb-5">
-                  We work with founders, startups, and teams who care about quality, 
-                  clarity, and long-term impact.
+                <p className="text-muted-foreground max-w-lg">
+                  Our clients value clarity, quality, and long-term
+                  thinking over shortcuts.
                 </p>
-                <Button variant="outline" asChild>
-                  <Link to="/about">About Us</Link>
-                </Button>
               </div>
-            </FadeIn>
-            <FadeIn direction="right" className="lg:col-span-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {whyInnoCrate.map((item) => (
-                  <div key={item.text} className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
-                    <div className="w-10 h-10 rounded-lg bg-brand-green-dark/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-brand-green-dark" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground pt-2">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
+              <Button
+                variant="outline"
+                className="bg-white text-primary hover:bg-white/90"
+                asChild
+              >
+                <Link to="/about">
+                  About Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </FadeIn>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {whoWeWorkWith.map((item) => (
+              <StaggerItem key={item.title}>
+                <div className="group p-6 rounded-xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all duration-300 h-full">
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <p className="text-sm text-muted-foreground mt-8 ml-2">
+            If you care about building things right — with clear communication
+            and long-term vision — we’ll work well together.
+          </p>
         </div>
       </section>
 
-      {/* Process Preview */}
+      {/* =======================
+          PROCESS PREVIEW
+      ======================= */}
       <section className="section-padding">
         <div className="container-wide">
           <FadeIn>
@@ -170,8 +255,8 @@ const Index = () => {
                   Our Approach
                 </h2>
                 <p className="text-muted-foreground max-w-lg">
-                  Simple, transparent, and collaborative — designed 
-                  to keep you informed at every stage.
+                  Simple, transparent, and collaborative — designed to keep you
+                  informed at every stage.
                 </p>
               </div>
               <Button asChild>
@@ -185,17 +270,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section-padding cta-section">
+      {/* =======================
+          FINAL CTA
+      ======================= */}
+      <section className="section-padding cta-section pt-24 final-cta">
         <div className="container-wide">
           <FadeIn>
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                Let's build something meaningful.
+                Let’s build something meaningful.
               </h2>
               <p className="text-white/70 mb-6">
-                Ready to turn your idea into reality? Let's have a conversation 
-                about your project and explore how we can help.
+                Ready to turn your idea into reality? Let’s talk about your
+                project and explore how we can help.
               </p>
               <Button
                 size="lg"

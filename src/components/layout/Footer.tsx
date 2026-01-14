@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Twitter, Github } from "lucide-react";
+import { Instagram, Linkedin, Mail } from "lucide-react";
 import logoIcon from "@/assets/logo-icon.png";
 
 const footerLinks = {
@@ -16,15 +16,15 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "GitHub", icon: Github, href: "#" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/innocrate.tech/" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/innocrate-tech/" },
+  { name: "Email", icon: Mail, href: "mailto:innocrate.tech@gmail.com" },
 ];
 
 const Footer = () => {
   return (
     <footer className="cta-section">
-      <div className="container-wide py-12 md:py-16">
+      <div className="container-wide py-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -40,7 +40,7 @@ const Footer = () => {
               Product Engineering & AI Solutions for modern businesses. We partner 
               with startups and growing teams to build reliable digital products.
             </p>
-            <div className="flex gap-3 mt-5">
+            <div className="flex gap-3 mt-8">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -94,14 +94,8 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} InnoCrate. All rights reserved.
+            © 2025 InnoCrate. All rights reserved.
           </p>
-          <Link
-            to="/start-project"
-            className="text-white/70 hover:text-white transition-colors text-sm"
-          >
-            Start a Project
-          </Link>
         </div>
       </div>
     </footer>

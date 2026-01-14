@@ -1,112 +1,194 @@
-import { useEffect } from "react";
-import { MessageSquare, Lightbulb, ArrowRight, Calendar, CheckCircle2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import emailjs from "emailjs-com";
+import {
+  Calendar,
+  Mail,
+  MessageSquare,
+  CheckCircle2,
+  Loader2,
+} from "lucide-react";
 import { Layout } from "@/components/layout";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/animations";
 
-const nextSteps = [
-  {
-    icon: MessageSquare,
-    title: "We understand your goals",
-    description: "Share your vision, challenges, and what success looks like.",
-  },
-  {
-    icon: Lightbulb,
-    title: "We discuss scope and approach",
-    description: "Together, we explore the best path forward for your project.",
-  },
-  {
-    icon: ArrowRight,
-    title: "We outline next steps clearly",
-    description: "You'll leave with clarity on how we can help.",
-  },
-];
+const CALENDLY_URL = "https://calendly.com/innocrate-tech/discovery-call";
+const EMAIL_ADDRESS = "innocrate.tech@gmail.com";
+const EMAILJS_SERVICE_ID = "service_yy8dueh";
+const EMAILJS_TEMPLATE_ID = "template_7nof6ip";
+const EMAILJS_PUBLIC_KEY = "xbDPp70sdsbpAIs3P";
 
 const StartProject = () => {
-  useEffect(() => {
-    // Load Calendly widget script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
+  const [activeTab, setActiveTab] = useState<"call" | "email">("call");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  useEffect(() => {
+    if (activeTab === "call") {
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [activeTab]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        e.target,
+        EMAILJS_PUBLIC_KEY
+      );
+      setSuccess(true);
+      e.target.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Layout>
-      {/* Hero */}
       <section className="section-padding pt-24 md:pt-28 bg-gradient-to-br from-muted via-background to-muted/30">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* LEFT CONTENT */}
             <FadeIn>
-              <div>
+              <div className="max-w-xl">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                   Start a Project
                 </h1>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Have an idea or an existing product? Let's talk.
+                  Whether you’re exploring an idea or improving an existing
+                  product, let’s talk and see if we’re a good fit.
                 </p>
 
-                {/* What Happens Next */}
-                <div className="space-y-4">
-                  <h2 className="text-sm font-semibold uppercase tracking-wider text-primary">
-                    What Happens Next
-                  </h2>
-                  {nextSteps.map((step, index) => (
-                    <div key={step.title} className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <step.icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-semibold mb-1">{step.title}</h3>
-                        <p className="text-muted-foreground text-sm">
-                          {step.description}
-                        </p>
-                      </div>
+                <div className="space-y-4 mb-6">
+                  {[
+                    "Understand your goals and challenges",
+                    "Discuss scope, timelines, and feasibility",
+                    "Clear next steps — no pressure",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start gap-3 text-sm"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-brand-green-dark mt-0.5" />
+                      <span className="text-muted-foreground">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-brand-green-dark" />
-                  <span className="text-sm">No pressure. Just a conversation to explore fit.</span>
+                <div className="p-4 rounded-xl bg-card border border-border">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <span className="font-medium">Email us directly:</span>
+                  </div>
+                  <p className="mt-1 text-sm text-primary">
+                    {EMAIL_ADDRESS}
+                  </p>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Calendly Embed */}
+            {/* RIGHT PANEL */}
             <FadeIn direction="right">
-              <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-border flex items-center gap-3 bg-muted/30">
-                  <Calendar className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold text-sm">Book a Discovery Call</h3>
+              <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                {/* Tabs */}
+                <div className="flex border-b border-border">
+                  <button
+                    onClick={() => setActiveTab("call")}
+                    className={`flex-1 px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 ${
+                      activeTab === "call"
+                        ? "bg-muted/50 text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    <Calendar className="w-4 h-4" />
+                    Book a Call
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("email")}
+                    className={`flex-1 px-4 py-3 text-sm font-medium flex items-center justify-center gap-2 ${
+                      activeTab === "email"
+                        ? "bg-muted/50 text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    Send a Message
+                  </button>
                 </div>
-                
-                {/* Calendly Inline Widget */}
-                <div
-                  className="calendly-inline-widget"
-                  data-url="https://calendly.com"
-                  style={{ minWidth: "300px", height: "600px" }}
-                />
-                
-                {/* Fallback message */}
-                <noscript>
-                  <div className="p-6 text-center">
-                    <p className="text-muted-foreground mb-4 text-sm">
-                      JavaScript is required to load the booking calendar.
-                    </p>
-                    <a
-                      href="https://calendly.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline text-sm"
+
+                {/* CONTENT */}
+                <div className="p-4">
+                  {activeTab === "call" && (
+                    <div
+                      className="calendly-inline-widget"
+                      data-url={CALENDLY_URL}
+                      style={{ minWidth: "300px", height: "600px" }}
+                    />
+                  )}
+
+                  {activeTab === "email" && (
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
                     >
-                      Book directly on Calendly →
-                    </a>
-                  </div>
-                </noscript>
+                      <input
+                        name="name"
+                        required
+                        placeholder="Your name"
+                        className="w-full p-3 rounded-lg border border-border bg-background"
+                      />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="Your email"
+                        className="w-full p-3 rounded-lg border border-border bg-background"
+                      />
+                      <textarea
+                        name="message"
+                        required
+                        rows={5}
+                        placeholder="Tell us about your project..."
+                        className="w-full p-3 rounded-lg border border-border bg-background"
+                      />
+
+                      <Button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full"
+                      >
+                        {loading ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          "Send Message"
+                        )}
+                      </Button>
+
+                      {success && (
+                        <p className="text-sm text-brand-green-dark text-center">
+                          Message sent successfully. We’ll get back to you soon.
+                        </p>
+                      )}
+                    </form>
+                  )}
+                </div>
               </div>
             </FadeIn>
           </div>
